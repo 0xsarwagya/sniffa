@@ -11,72 +11,79 @@ const srcPath = path.join(process.cwd(), "src");
 const buildPath = path.join(process.cwd(), "build");
 
 async function clear(): Promise<void> {
-	const time = Date.now();
+  const time = Date.now();
 
-	await fs.rm(buildPath, { recursive: true, force: true });
+  await fs.rm(buildPath, { recursive: true, force: true });
 
-	// biome-ignore lint/suspicious/noConsoleLog: script file
-	console.log(`🚀 cleared in ${Date.now() - time}ms`);
+  // biome-ignore lint/suspicious/noConsoleLog: script file
+  console.log(`🚀 cleared in ${Date.now() - time}ms`);
 }
 
 async function buildDts(): Promise<void> {
-	const time = Date.now();
+  const time = Date.now();
 
-	const { stderr } = await execFile("tsc", [
-		"--emitDeclarationOnly",
-		"--project",
-		"tsconfig.build.json",
-	]);
+  const { stderr } = await execFile("tsc", [
+    "--emitDeclarationOnly",
+    "--project",
+    "tsconfig.build.json",
+  ]);
 
-	if (stderr) {
-		console.error(stderr);
-	}
+  if (stderr) {
+    console.error(stderr);
+  }
 
-	// biome-ignore lint/suspicious/noConsoleLog: script file
-	console.log(`🚀 built definitions files in ${Date.now() - time} ms`);
+  // biome-ignore lint/suspicious/noConsoleLog: script file
+  console.log(`🚀 built definitions files in ${Date.now() - time} ms`);
 }
 
 async function extractDts(): Promise<void> {
-	const time = Date.now();
+  const time = Date.now();
 
-	const { stderr } = await execFile("api-extractor", ["run"]);
+  const { stderr } = await execFile("api-extractor", ["run"]);
 
-	if (stderr) {
-		console.error(stderr);
-	}
+  if (stderr) {
+    console.error(stderr);
+  }
 
-	await rimraf("./build/*", { glob: true });
-	await fs.rename("trimmed.d.ts", "build/index.d.ts");
+  await rimraf("./build/*", { glob: true });
+  await fs.rename("trimmed.d.ts", "build/index.d.ts");
 
-	// biome-ignore lint/suspicious/noConsoleLog: script file
-	console.log(`🚀 extracted definitions files in ${Date.now() - time} ms`);
+  // biome-ignore lint/suspicious/noConsoleLog: script file
+  console.log(`🚀 extracted definitions files in ${Date.now() - time} ms`);
 }
 
 async function build(): Promise<void> {
-	const time = Date.now();
+  const time = Date.now();
 
-	await esbuild({
-		platform: "node",
-		target: "node21",
-		format: "esm",
-		nodePaths: [srcPath],
-		sourcemap: false,
-		external: [],
-		bundle: true,
-		entryPoints: [path.join(srcPath, "index.ts"), path.join(srcPath, "bin.ts")],
-		outdir: buildPath,
-		banner: {
-			js : `// Built By Sarwagya Singh (https://github.com/0xsarwagya/sniffa)`
-		}
-	});
+  const banner =
+    "const require = (await import('node:module')).createRequire(import.meta.url); const __filename = new URL(import.meta.url).pathname; const __dirname = require('node:path').dirname(__filename);";
 
-	// biome-ignore lint/suspicious/noConsoleLog: script file
-	console.log(`🚀 bundled in ${Date.now() - time}ms`);
+  await esbuild({
+    platform: "node",
+    target: "node21",
+    format: "esm",
+    nodePaths: [srcPath],
+    sourcemap: false,
+    external: [],
+    bundle: true,
+    entryPoints: [path.join(srcPath, "index.ts"), path.join(srcPath, "bin.ts")],
+    outdir: buildPath,
+    footer: {
+      js: `// Built By Sarwagya Singh (https://github.com/0xsarwagya/sniffa)`,
+    },
+    banner: {
+      js: banner,
+    },
+    minify: true,
+  });
+
+  // biome-ignore lint/suspicious/noConsoleLog: script file
+  console.log(`🚀 bundled in ${Date.now() - time}ms`);
 }
 
 if (process.argv[1] === import.meta.filename) {
-	await clear();
-	await buildDts();
-	await extractDts();
-	await build();
+  await clear();
+  await buildDts();
+  await extractDts();
+  await build();
 }

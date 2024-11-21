@@ -1,6 +1,6 @@
 {
 	"name": "sniffa",
-	"description": "A lightweight packet sniffer built with TypeScript to capture and analyze network traffic in real time.",
+	"description": "Sniffa is a TypeScript-based network sniffer, proxy server, and spoofing server that intercepts and analyzes HTTP/HTTPS traffic. It supports SNI-based TLS interception, allowing for dynamic certificate generation and easy monitoring of network requests and responses.",
 	"version": "0.0.0-development",
 	"type": "module",
 	"exports": "./build/index.js",
@@ -30,7 +30,7 @@
 		"spell:check": "cspell \"{README.md,CODE_OF_CONDUCT.md,CONTRIBUTING.md,.github/*.md,src/**/*.ts}\"",
 		"cz": "cz",
 		"semantic-release": "semantic-release",
-		"audit" : "better-npm-audit audit"
+		"audit": "better-npm-audit audit"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
@@ -43,7 +43,9 @@
 		"@semantic-release/npm": "^12.0.1",
 		"@semantic-release/release-notes-generator": "^14.0.1",
 		"@types/node": "^22.9.0",
+		"@types/pem": "^1.14.4",
 		"@types/prompts": "^2.4.9",
+		"@types/yargs": "^17.0.33",
 		"better-npm-audit": "^3.11.0",
 		"c8": "^10.1.2",
 		"cspell": "^8.16.0",
@@ -51,7 +53,10 @@
 		"esbuild": "^0.23.1",
 		"rimraf": "^6.0.1",
 		"semantic-release": "^24.2.0",
-		"typescript": "^5.6.3"
+		"strict-event-emitter-types": "2.0.0",
+		"typescript": "^5.6.3",
+		"winston": "3.17.0",
+		"yargs": "17.7.2"
 	},
 	"config": {
 		"commitizen": {
@@ -59,6 +64,7 @@
 		}
 	},
 	"dependencies": {
-		"npm": "^10.9.0"
+		"pem": "^1.14.8",
+		"sinon": "19.0.2"
 	}
 }
