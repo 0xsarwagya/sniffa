@@ -8,7 +8,7 @@ Header Section
   </h3>
   <p align="center">
     <a href="https://www.npmjs.com/package/sniffa">
-        <img src='./.github/assets/icon.png' height="100px" width="100px">
+        <img src='https://raw.githubusercontent.com/0xsarwagya/sniffa/main/.github/assets/icon.png' height="100px" width="100px">
     </a>
   </p>
 
