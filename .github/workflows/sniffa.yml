@@ -2,6 +2,8 @@ name: sniffa
 
 on: [push]
 
+permissions: "write-all"
+
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
