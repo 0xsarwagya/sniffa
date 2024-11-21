@@ -1,0 +1,64 @@
+{
+	"name": "sniffa",
+	"description": "A lightweight packet sniffer built with TypeScript to capture and analyze network traffic in real time.",
+	"version": "0.0.0-development",
+	"type": "module",
+	"exports": "./build/index.js",
+	"bin": "./build/bin.js",
+	"types": "./build/index.d.ts",
+	"license": "MIT",
+	"engines": {
+		"node": "^22.8.0",
+		"npm": "^10.8.2"
+	},
+	"volta": {
+		"node": "22.8.0",
+		"npm": "10.8.2"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"scripts": {
+		"build": "node --disable-warning=ExperimentalWarning --experimental-strip-types  ./scripts/build.ts",
+		"clean": "rimraf build coverage",
+		"type:check": "tsc --noEmit",
+		"lint": "biome check . --write --unsafe",
+		"lint:check": "biome ci .",
+		"test": "node --disable-warning=ExperimentalWarning --experimental-strip-types ./scripts/test.ts test",
+		"test:watch": "node --disable-warning=ExperimentalWarning --experimental-strip-types ./scripts/test.ts test:watch",
+		"test:coverage": "node --disable-warning=ExperimentalWarning --experimental-strip-types ./scripts/test.ts test:coverage",
+		"spell:check": "cspell \"{README.md,CODE_OF_CONDUCT.md,CONTRIBUTING.md,.github/*.md,src/**/*.ts}\"",
+		"cz": "cz",
+		"semantic-release": "semantic-release",
+		"audit" : "better-npm-audit audit"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@microsoft/api-extractor": "^7.47.11",
+		"@ryansonshine/commitizen": "^4.2.8",
+		"@ryansonshine/cz-conventional-changelog": "^3.3.4",
+		"@semantic-release/changelog": "^6.0.3",
+		"@semantic-release/commit-analyzer": "^13.0.0",
+		"@semantic-release/github": "^10.3.5",
+		"@semantic-release/npm": "^12.0.1",
+		"@semantic-release/release-notes-generator": "^14.0.1",
+		"@types/node": "^22.9.0",
+		"@types/prompts": "^2.4.9",
+		"better-npm-audit": "^3.11.0",
+		"c8": "^10.1.2",
+		"cspell": "^8.16.0",
+		"cz-conventional-changelog": "^3.3.0",
+		"esbuild": "^0.23.1",
+		"rimraf": "^6.0.1",
+		"semantic-release": "^24.2.0",
+		"typescript": "^5.6.3"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	},
+	"dependencies": {
+		"npm": "^10.9.0"
+	}
+}
