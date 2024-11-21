@@ -1,28 +1,30 @@
 {
-	"version": "0.2",
-	"language": "en",
-	"words": [
-		"degit",
-		"esbuild",
-		"illumos",
-		"Muzaffarpur",
-		"octocat",
-		"outdir",
-		"pcap",
-		"rmrf",
-		"Shinjuku",
-		"sniffa",
-		"socio",
-		"tsdoc",
-		"winrt",
-		"wlan"
-	],
-	"flagWords": [],
-	"ignorePaths": [
-		"package.json",
-		"package-lock.json",
-		"yarn.lock",
-		"tsconfig.json",
-		"node_modules/**"
-	]
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "degit",
+    "esbuild",
+    "illumos",
+    "Muzaffarpur",
+    "octocat",
+    "outdir",
+    "pcap",
+    "rmrf",
+    "Shinjuku",
+    "sniffa",
+    "socio",
+    "tsdoc",
+    "winrt",
+    "wlan",
+    "Cliopts",
+    "Repobeats"
+  ],
+  "flagWords": [],
+  "ignorePaths": [
+    "package.json",
+    "package-lock.json",
+    "yarn.lock",
+    "tsconfig.json",
+    "node_modules/**"
+  ]
 }

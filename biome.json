@@ -9,7 +9,7 @@
 			"correctness": {
 				"noNodejsModules": "off"
 			},
-			"style" : {
+			"style": {
 				"noDefaultExport": "off"
 			}
 		}
