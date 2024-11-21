@@ -1,0 +1,10 @@
+title: Sniffa | Sarwagya Singh
+description: Sniffa is a TypeScript-based network sniffer, proxy server, and spoofing server that intercepts and analyzes HTTP/HTTPS traffic. It supports SNI-based TLS interception, allowing for dynamic certificate generation and easy monitoring of network requests and responses. 
+baseurl: "/sniffa"
+url: "https://0xsarwagya.github.io"
+theme: minima
+markdown: kramdown
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
